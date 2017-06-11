@@ -39,7 +39,7 @@ function getYelpData() {
     yelpHours = response;
     yelpWebsite = response;
   });
-  getGiphy();
+  getGiphy(services);
 }
 
 function displayYelpData() {
@@ -47,7 +47,16 @@ function displayYelpData() {
 }
 
 function getGiphy(){
-  
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + services + "&limit=100&api_key=dc6zaTOxFJmzC";
+  $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+      for (i = 0; i < response.length; i++){
+        var gif = response.data[i].images.fixed_height.url;
+        $('#displayGif').append(gif);
+      }
+    }
 }
 
 
