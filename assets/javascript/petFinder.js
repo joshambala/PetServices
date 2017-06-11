@@ -17,11 +17,20 @@ var yelpHours = '';
 var yelpWebsite = '';
 
 function getYelpData() {
-  var type = '';
   var queryURL = '';
+  $('#search-form').on('submit', function(event) {
+  event.preventDefault();
+
+  var services = document.getElementById('services').value;
+  var address = document.getElementById('address').value;
+  var maxDistance = document.getElementById('maxDistance').value;
   $.ajax({
     url: queryURL,
-    method: 'GET'
+    method: 'GET',
+    data: {
+      'api-key':,
+      'services': services
+    }
   }).done(function(response){
     yelpID = response;
     yelpName = response;
@@ -30,9 +39,16 @@ function getYelpData() {
     yelpHours = response;
     yelpWebsite = response;
   });
+  getGiphy();
 }
 
 function displayYelpData() {
   
 }
+
+function getGiphy(){
+  
+}
+
+
 
